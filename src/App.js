@@ -1,13 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import HomePage from 'pages/home';
 
-function App() {
-  return (
-    <div className="App">
-      Shopping cart
-    </div>
-  );
-}
+const Component = () => <HomePage />;
 
-export default App;
+Component.displayName = 'MainAppComponent';
+
+export default Component;
