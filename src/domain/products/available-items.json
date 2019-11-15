@@ -1,14 +1,18 @@
 [
   {
+    "_id": "1",
     "name": "eggs"
   },
   {
+    "_id": "2",
     "name": "cheese"
   },
   {
+    "_id": "3",
     "name": "bacon"
   },
   {
+    "_id": "4",
     "name": "ham"
   }
 ]
