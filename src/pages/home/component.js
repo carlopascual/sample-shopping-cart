@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Header } from 'components/ui-elements';
 import ProductList from 'components/product-list';
 import Basket from 'components/basket';
-import { selectProduct } from './actions';
+import { selectProduct, removeSelectedProduct } from './actions';
 
 const Component = () => {
   const [selectedProducts, setSelectedProducts] = useState({});
@@ -11,7 +11,16 @@ const Component = () => {
     <>
       {JSON.stringify({ selectedProducts, setSelectedProducts })}
       <Header />
-      <Basket selectedProducts={selectedProducts} />
+      <Basket
+        selectedProducts={selectedProducts}
+        onRemove={product => {
+          removeSelectedProduct({
+            product,
+            selectedProducts,
+            setSelectedProducts,
+          });
+        }}
+      />
       <ProductList
         onSelect={product => {
           selectProduct({ product, selectedProducts, setSelectedProducts });

@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Component = ({ product, quantity }) => (
-  <div>
+const Component = ({ product, quantity, onClick = () => {} }) => (
+  <div onClick={() => onClick(product)}>
     {product.name} : {quantity}
   </div>
 );
