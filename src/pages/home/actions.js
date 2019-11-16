@@ -17,18 +17,19 @@ export const selectProduct = ({
   });
 };
 
-export const removeSelectedProduct = ({
+export const editSelectedProduct = ({
   product,
+  quantity,
   selectedProducts,
   setSelectedProducts,
 }) => {
-  if (selectedProducts[product._id] - 1 === 0) {
+  if (quantity === 0) {
     setSelectedProducts(_.omit(selectedProducts, product._id));
     return;
   }
 
   setSelectedProducts({
     ...selectedProducts,
-    [product._id]: (selectedProducts[product._id] -= 1),
+    [product._id]: quantity,
   });
 };

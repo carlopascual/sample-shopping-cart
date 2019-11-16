@@ -28,7 +28,7 @@ const Outline = styled.div`
   }
 `;
 
-const Component = ({ selectedProducts, onRemove }) => (
+const Component = ({ selectedProducts, onEdit }) => (
   <Outline>
     {Object.keys(selectedProducts).length <= 0 && (
       <h3 style={{ margin: 0, fontWeight: '400' }}>
@@ -37,12 +37,13 @@ const Component = ({ selectedProducts, onRemove }) => (
     )}
     {_.map(Object.entries(selectedProducts), ([productId, quantity], index) => (
       <BasketRow
+        key={productId}
         className={`basket ${index === 0 ? 'first' : ''} ${
           index === Object.keys(selectedProducts).length - 1 ? 'last' : ''
         }`}
         productId={productId}
         quantity={quantity}
-        onClick={product => onRemove(product)}
+        onSave={({ product, quantity }) => onEdit({ product, quantity })}
       />
     ))}
   </Outline>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import setQuantity from 'lib/setQuantity';
 
 const Outline = styled.div`
   padding: 20px;
@@ -14,9 +15,10 @@ const Quantity = styled.h5`
   margin: 0;
 `;
 
-const Component = ({ product, quantity, onClick = () => {}, className }) => {
+const Component = ({ product, quantity, onSave = () => {}, className }) => {
   const [selectedQuantity, setSelectedQuantity] = useState(quantity);
   const [isEditing, setEditing] = useState(false);
+
   return (
     <Outline className={className}>
       <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -35,10 +37,25 @@ const Component = ({ product, quantity, onClick = () => {}, className }) => {
       {isEditing && (
         <div style={{ marginTop: '20px' }}>
           <Quantity style={{ marginBottom: '4px' }}>Your quantity:</Quantity>
-          <input value={selectedQuantity} />
+          <input
+            value={selectedQuantity}
+            onChange={e =>
+              setQuantity({
+                setFunction: setSelectedQuantity,
+                value: e.target.value,
+              })
+            }
+          />
           <button
             style={{ background: 'black', color: 'white', marginLeft: '10px' }}
-            onClick={() => onClick(product)}
+            onClick={() => {
+              setEditing(false);
+
+              onSave({
+                product,
+                quantity: selectedQuantity.length <= 0 ? 0 : selectedQuantity,
+              });
+            }}
           >
             Save
           </button>

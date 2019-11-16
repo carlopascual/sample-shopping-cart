@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import isAllowableInteger from 'lib/isAllowableInteger';
+import setQuantity from 'lib/setQuantity';
 
 const Row = styled.div`
   align-items: center;
@@ -23,7 +23,7 @@ const Quantity = styled.h5`
 `;
 
 const Component = ({ product, onSelect = () => {} }) => {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setSelectedQuantity] = useState(1);
 
   return (
     <Row>
@@ -36,14 +36,20 @@ const Component = ({ product, onSelect = () => {} }) => {
       <Quantity style={{ marginBottom: '4px' }}>Choose quantity:</Quantity>
       <input
         value={quantity}
-        onChange={e =>
-          (e.target.value.length === 0 || isAllowableInteger(e.target.value)) &&
-          setQuantity(parseInt(e.target.value))
-        }
+        onChange={e => {
+          setQuantity({
+            setFunction: setSelectedQuantity,
+            value: e.target.value,
+          });
+        }}
       />
       <button
         style={{ marginLeft: '10px' }}
-        onClick={() => quantity.length !== 0 && onSelect({ product, quantity })}
+        onClick={() =>
+          quantity.length !== 0 &&
+          parseInt(quantity) > 0 &&
+          onSelect({ product, quantity })
+        }
       >
         Add
       </button>
