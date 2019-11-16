@@ -22,8 +22,13 @@ const Component = () => {
         }}
       />
       <ProductList
-        onSelect={product => {
-          selectProduct({ product, selectedProducts, setSelectedProducts });
+        onSelect={({ product, quantity }) => {
+          selectProduct({
+            product,
+            quantity,
+            selectedProducts,
+            setSelectedProducts,
+          });
         }}
       />
     </>

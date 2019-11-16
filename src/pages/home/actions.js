@@ -2,17 +2,18 @@ import _ from 'lodash';
 
 export const selectProduct = ({
   product,
+  quantity,
   selectedProducts,
   setSelectedProducts,
 }) => {
   if (!selectedProducts[product._id]) {
-    setSelectedProducts({ ...selectedProducts, [product._id]: 1 });
+    setSelectedProducts({ ...selectedProducts, [product._id]: quantity });
     return;
   }
 
   setSelectedProducts({
     ...selectedProducts,
-    [product._id]: (selectedProducts[product._id] += 1),
+    [product._id]: (selectedProducts[product._id] += quantity),
   });
 };
 
