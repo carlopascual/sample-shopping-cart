@@ -9,8 +9,8 @@ const Component = () => {
 
   return (
     <>
-      {JSON.stringify({ selectedProducts, setSelectedProducts })}
       <Header />
+      <h2>Your basket</h2>
       <Basket
         selectedProducts={selectedProducts}
         onRemove={product => {
@@ -21,6 +21,7 @@ const Component = () => {
           });
         }}
       />
+      <h2>Product List</h2>
       <ProductList
         onSelect={({ product, quantity }) => {
           selectProduct({
