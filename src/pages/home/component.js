@@ -10,7 +10,6 @@ const Component = () => {
   return (
     <>
       <Header />
-      {console.log(selectedProducts)}
       <h2>Your basket</h2>
       <Basket
         selectedProducts={selectedProducts}
