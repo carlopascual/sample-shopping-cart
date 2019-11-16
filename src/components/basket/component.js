@@ -1,15 +1,15 @@
 import _ from 'lodash';
 import React from 'react';
-import Product from 'components/product';
+import BasketRow from './row/';
 
 const Component = ({ selectedProducts, onRemove }) => (
   <div>
     <h2>My basket</h2>
     {_.map(selectedProducts, (quantity, productId) => (
-      <Product
-        onClick={product => onRemove(product)}
+      <BasketRow
         productId={productId}
         quantity={quantity}
+        onClick={product => onRemove(product)}
       />
     ))}
   </div>
